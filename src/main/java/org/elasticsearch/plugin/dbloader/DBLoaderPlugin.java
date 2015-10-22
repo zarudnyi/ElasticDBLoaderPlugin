@@ -1,8 +1,7 @@
 package org.elasticsearch.plugin.dbloader;
 
 import org.elasticsearch.common.collect.Lists;
-import org.elasticsearch.common.inject.Module;
-import org.elasticsearch.dbloader.DBLoaderModule;
+import org.elasticsearch.dbloader.Module;
 import org.elasticsearch.plugins.AbstractPlugin;
 
 import java.util.Collection;
@@ -17,9 +16,9 @@ public class DBLoaderPlugin extends AbstractPlugin {
     }
 
     @Override
-    public Collection<Class<? extends Module>> modules() {
-        Collection<Class<? extends Module>> modules = Lists.newArrayList();
-        modules.add(DBLoaderModule.class);
+    public Collection<Class<? extends org.elasticsearch.common.inject.Module>> modules() {
+        Collection<Class<? extends org.elasticsearch.common.inject.Module>> modules = Lists.newArrayList();
+        modules.add(Module.class);
         return modules;
     }
 }
