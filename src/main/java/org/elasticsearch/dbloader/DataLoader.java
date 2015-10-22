@@ -35,6 +35,8 @@ public class DataLoader {
         if (ids.length()>0){
             query = query.replace("%WHERE%" , config.getQueryWhere(index));
             query = query.replace("%IDS%", ids.join(","));
+        } else {
+            query = query.replace("%WHERE%" ,"");
         }
 
         PreparedStatement preparedStatement = conn.prepareStatement(query);

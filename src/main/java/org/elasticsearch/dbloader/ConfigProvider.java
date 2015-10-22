@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Created by root on 22.10.15.
+ * Created by Ivan Zarudnyi on 22.10.15.
  */
 public class ConfigProvider {
     private static ConfigProvider instance;
