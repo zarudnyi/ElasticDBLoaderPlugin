@@ -41,10 +41,6 @@ public class RestHandler extends BaseRestHandler {
         String type = params.getString("type");
         JSONArray ids = params.getJSONArray("ids");
 
-
-        channel.sendResponse(new BytesRestResponse(RestStatus.INTERNAL_SERVER_ERROR,params.toString()));
-
-
         DataLoader dl = new DataLoader(ConfigProvider.getInstance());
 
         try {
@@ -60,7 +56,7 @@ public class RestHandler extends BaseRestHandler {
         client.bulk(bulkRequest, new RestBuilderListener<BulkResponse>(channel) {
             @Override
             public RestResponse buildResponse(BulkResponse response, XContentBuilder builder) throws Exception {
-                return new BytesRestResponse( RestStatus.OK,""+ (response.hasFailures()?response.buildFailureMessage():"OK"));
+                return new BytesRestResponse( response.hasFailures()?RestStatus.INTERNAL_SERVER_ERROR:RestStatus.OK,response.hasFailures()?response.buildFailureMessage():"OK");
             }
         });
     }
